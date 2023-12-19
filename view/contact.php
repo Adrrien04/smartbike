@@ -34,3 +34,10 @@
 
         <button type="submit" class="btn btn-primary">Envoyer</button>
     </form>
+
+    <iframe
+            src="https://maps.google.com/maps?q=48.78926954468816,2.3636654693114982&output=embed"
+            allowfullscreen
+    ></iframe>
+
+</div>

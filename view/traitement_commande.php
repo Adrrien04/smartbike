@@ -12,11 +12,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $pdo->prepare('INSERT INTO commandes (titre, nom, prenom, email, message) VALUES (?, ?, ?, ?, ?)');
         $stmt->execute([$titre, $nom, $prenom, $email, $message]);
 
-        // Redirection avec succès
         header('Location: ?page=commander&success=true');
         exit();
     } catch (PDOException $e) {
-        // En cas d'échec, redirigez avec erreur
         header('Location: ?page=commander&error=true');
         exit();
     }
