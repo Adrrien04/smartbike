@@ -1,6 +1,6 @@
 <?php
 include_once('model/bdd.php');
-$veloController = new VeloController();
+$veloController = new VeloController(); // Assurez-vous d'instancier le contrôleur
 $velos = $veloController->getVelosFromDatabase();
 ?>
 
@@ -9,18 +9,6 @@ $velos = $veloController->getVelosFromDatabase();
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
-<?php
-
-$success = isset($_GET['success']) ? $_GET['success'] : false;
-$error = isset($_GET['error']) ? $_GET['error'] : false;
-
-
-if ($success) {
-    echo '<div class="alert alert-success" role="alert">Commande envoyée avec succès!</div>';
-} elseif ($error) {
-    echo '<div class="alert alert-danger" role="alert">Erreur lors de l\'envoi de la commande.</div>';
-}
-?>
 <h1>Commander</h1>
 
 <form action="?page=traitement_commande" method="post">

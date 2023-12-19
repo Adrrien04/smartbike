@@ -13,6 +13,9 @@ if ($page == 'accueil') {
 elseif ($page == 'contact') {
     include 'view/contact.php';
 }
+elseif($page == 'getContact') {
+    include('view/getContact.php');
+}
 elseif ($page == 'velo') {
     $veloController->afficherVelo();
 }
@@ -23,10 +26,11 @@ elseif ($page == 'commander') {
 elseif ($page == 'traitement_commande') {
     include 'view/traitement_commande.php';
 }
-elseif ($page == 'produit') {
+elseif ($page == 'velo') {
     if (isset($_GET['velo'])) {
         $veloId = $_GET['velo'];
-        $veloController->afficherProduit($veloId);
+        $veloController = new VeloController();
+        $veloController->afficherDetailsVelo($veloId);
     } else {
         echo 'ID du vélo manquant';
     }
