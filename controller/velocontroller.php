@@ -4,25 +4,38 @@ include('model/bdd.php');
 
 class VeloController {
     public function afficherVelo() {
-        // Logique pour récupérer les vélos depuis la base de données
         $velos = $this->getVelosFromDatabase();
-
-        // Inclure la vue correspondante
         include('view/velo.php');
     }
 
-    private function getVelosFromDatabase() {
+    public function afficherProduit($veloId) {
+        $velo = $this->getVeloById($veloId);
+
+        if ($velo) {
+            include('view/velo.php');
+        } else {
+            echo 'Vélo non trouvé';
+        }
+}
+
+
+    PUBLIC function getVeloById($veloId) {
         try {
-            // Connexion à la base de données (assurez-vous d'avoir la classe Bdd correctement définie)
             $bdd = Bdd::connexion();
-
-            // Requête SQL pour récupérer tous les vélos
+            $stmt = $bdd->prepare("SELECT * FROM articles WHERE id = ?");
+            $stmt->execute([$veloId]);
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo "Erreur lors de la récupération du vélo : " . $e->getMessage();
+            return false;
+        }
+    }
+    PUBLIC function getVelosFromDatabase() {
+        try {
+            $bdd = Bdd::connexion();
             $query = $bdd->query("SELECT * FROM articles");
-
-            // Récupération des résultats sous forme de tableau associatif
             return $query->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
-            // Gérer l'erreur ici (par exemple, log, affichage, etc.)
             echo "Erreur lors de la récupération des vélos : " . $e->getMessage();
             return false;
         }

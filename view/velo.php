@@ -6,7 +6,6 @@ include_once('model/bdd.php');
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <style>
-        /* Ajoutez un peu de style pour les grilles */
         .velo-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -34,13 +33,16 @@ if (is_array($velos) && count($velos) > 0) {
     echo '<div class="velo-grid">';
 
     foreach ($velos as $velo) {
-        $photo_url = isset($velo['photo_url']) ? $velo['photo_url'] : 'chemin/par/defaut.jpg';
+        $photo_url = isset($velo['photo_url']) ? $velo['photo_url'] : '';
 
         echo '<div class="velo-card">';
         echo '<img src="' . $photo_url . '" class="velo-image" alt="Vélo">';
         echo '<p>' . $velo['titre'] . '</p>';
         echo '<p>Description : ' . $velo['description'] . '</p>';
         echo '<p>Prix : ' . $velo['prix'] . ' €</p>';
+        echo '<a href="?page=produit&velo=' . $velo['id'] . '" class="btn btn-info">Plus d\'infos</a>';
+        echo '<a href="?page=commander " class="btn btn-primary">Commander</a>';
+
         echo '<hr>';
         echo '</div>';
     }

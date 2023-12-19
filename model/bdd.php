@@ -22,7 +22,7 @@ $bdd = Bdd::connexion();
 
 
 if ($bdd) {
-    echo "Connexion réussie!";
+    echo "";
 } else {
     echo "Erreur lors de la connexion à la base de données.";
 }
