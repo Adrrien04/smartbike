@@ -47,7 +47,7 @@ if (is_array($velos) && count($velos) > 0) {
 
     echo '</div>';
 } else {
-    echo '<p>Aucun vélo disponible pour le moment.</p>';
+    echo '<p>Aucun vélo disponible pour le moment</p>';
 }
 ?>
 
